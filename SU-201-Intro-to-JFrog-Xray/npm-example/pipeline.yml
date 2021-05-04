@@ -1,5 +1,5 @@
 resources:
-  - name: SwamupGitRepo
+  - name: npm_example
     type: GitRepo
     configuration:
       gitProvider: GitHub
@@ -29,7 +29,7 @@ pipelines:
           integrations:
             - name: Artifactory
           inputResources:
-            - name: SwamupGitRepo
+            - name: npm_example
       - name: publish_npm_app
         type: NpmPublish
         configuration:
