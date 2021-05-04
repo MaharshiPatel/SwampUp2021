@@ -3,9 +3,9 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: GitHub
-      path: jfrog/SwampUp2021
+      path: MaharshiPatel/SwampUp2021
       branches:
-        include: main
+        include: pipeline
   - name: myBuildInfo
     type: BuildInfo
     configuration:
