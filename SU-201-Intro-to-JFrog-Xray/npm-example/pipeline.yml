@@ -41,11 +41,11 @@ pipelines:
           repositoryName: su201-npm-dev-local
           autoPublishBuildInfo: true       # optional
           inputSteps:
-            - name: build_npm_app
+            - name: npm_build_step
           integrations:
             - name: Artifactory
           outputResources:
             - name: buildinfo_npm_example                 # optional
         execution:
           onStart:
-            - export inputNpmBuildStepName="build_npm_app"
+            - export inputNpmBuildStepName="npm_build_step"
