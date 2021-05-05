@@ -1,51 +1,102 @@
 template: true   # required for local templates
 valuesFilePath: ./values.yml
 
+
 resources:
-  - name: npm_example
+  - name: bld_npm_backend
     type: GitRepo
     configuration:
-      # SCM integration where the repository is located
-      gitProvider: {{ .Values.myRepo.gitProvider }} 
-      # Repository path, including org name/repo name
-      path: {{ .Values.myRepo.path }} 
+      gitProvider: {{ .Values.myRepo.gitProvider }}     # VCS integration name
+      path: {{ .Values.myRepo.path }}    # VCS Repository path
       branches:
-        # Specifies which branches will trigger dependent steps
-        include: {{ .Values.myRepo.branch }} 
+        include: {{ .Values.myRepo.branch }}    # Specifies which branches will trigger dependent steps
 
-  - name: buildinfo_npm_example
+  - name: NpmBuildInfo
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
 
+  
+
 pipelines:
-  - name: npm_example_pipeline
+  - name: npm_example_pipeline1
     configuration:
       environmentVariables:
         readOnly:
-          my_app_ver: '1.0.$run_number'
+          my_env_var: '1.0.$run_number'
+
     steps:
       - name: npm_build_step
         type: NpmBuild
         configuration:
-          sourceLocation: SU-201-Intro-to-JFrog-Xray/npm-example
-          repositoryName: su201-npm-dev-local
+          repositoryName: su201-npm-dev-local      # required, npm repository name on artifacctory
+          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
           integrations:
-            - name: Artifactory
+            - name:  Artifactory  # required
           inputResources:
-            - name: npm_example
+            - name: bld_npm_backend         # required
 
       - name: npm_publish_step
         type: NpmPublish
         configuration:
-          repositoryName: su201-npm-dev-local
+          # for payloadType npm:
+          repositoryName: su201-npm-dev-local       # required, npm repository name on artifactory
+          forceXrayScan: true
+          failOnScan: true       # default is TRUE
           autoPublishBuildInfo: true       # optional
-          inputSteps:
-            - name: npm_build_step
           integrations:
-            - name: Artifactory
+            - name: Artifactory      # required
+          inputSteps:
+            - name: npm_build_step                # required
           outputResources:
-            - name: buildinfo_npm_example                 # optional
-        execution:
-          onStart:
-            - export inputNpmBuildStepName="npm_build_step"
+            - name: NpmBuildInfo                 # optional
+
+
+# resources:
+#   - name: npm_example
+#     type: GitRepo
+#     configuration:
+#       # SCM integration where the repository is located
+#       gitProvider: {{ .Values.myRepo.gitProvider }} 
+#       # Repository path, including org name/repo name
+#       path: {{ .Values.myRepo.path }} 
+#       branches:
+#         # Specifies which branches will trigger dependent steps
+#         include: {{ .Values.myRepo.branch }} 
+
+#   - name: buildinfo_npm_example
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: Artifactory
+
+# pipelines:
+#   - name: npm_example_pipeline
+#     configuration:
+#       environmentVariables:
+#         readOnly:
+#           my_app_ver: '1.0.$run_number'
+#     steps:
+#       - name: npm_build_step
+#         type: NpmBuild
+#         configuration:
+#           sourceLocation: SU-201-Intro-to-JFrog-Xray/npm-example
+#           repositoryName: su201-npm-dev-local
+#           integrations:
+#             - name: Artifactory
+#           inputResources:
+#             - name: npm_example
+
+#       - name: npm_publish_step
+#         type: NpmPublish
+#         configuration:
+#           repositoryName: su201-npm-dev-local
+#           autoPublishBuildInfo: true       # optional
+#           inputSteps:
+#             - name: npm_build_step
+#           integrations:
+#             - name: Artifactory
+#           outputResources:
+#             - name: buildinfo_npm_example                 # optional
+#         execution:
+#           onStart:
+#             - export inputNpmBuildStepName="npm_build_step"
