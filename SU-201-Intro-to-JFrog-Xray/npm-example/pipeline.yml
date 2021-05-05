@@ -13,7 +13,7 @@ resources:
         # Specifies which branches will trigger dependent steps
         include: {{ .Values.myRepo.branch }} 
 
-  - name: myBuildInfo
+  - name: buildinfo_npm_example
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
