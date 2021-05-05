@@ -1,17 +1,22 @@
+template: true   # required for local templates
+valuesFilePath: ./values.yml
+
 resources:
   - name: npm_example
     type: GitRepo
     configuration:
-      gitProvider: GitHub
-      path: MaharshiPatel/SwampUp2021
+      # SCM integration where the repository is located
+      gitProvider: {{ .Values.myRepo.gitProvider }} 
+      # Repository path, including org name/repo name
+      path: {{ .Values.myRepo.path }} 
       branches:
-        include: pipeline
+        # Specifies which branches will trigger dependent steps
+        include: {{ .Values.myRepo.branch }} 
+
   - name: myBuildInfo
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
-      buildName: npm-example
-      buildNumber: 1
 
 pipelines:
   - name: npm_example_pipeline
@@ -20,24 +25,27 @@ pipelines:
         readOnly:
           my_app_ver: '1.0.$run_number'
     steps:
-      - name: build_npm_app
+      - name: npm_build_step
         type: NpmBuild
         configuration:
-          npmArgs: --no-progress --no-audit
           sourceLocation: SU-201-Intro-to-JFrog-Xray/npm-example
-          repositoryName: npm
+          repositoryName: su201-npm-dev-local
           integrations:
             - name: Artifactory
           inputResources:
             - name: npm_example
-      - name: publish_npm_app
+
+      - name: npm_publish_step
         type: NpmPublish
         configuration:
           repositoryName: su201-npm-dev-local
+          autoPublishBuildInfo: true       # optional
           inputSteps:
             - name: build_npm_app
           integrations:
             - name: Artifactory
+          outputResources:
+            - name: buildinfo_npm_example                 # optional
         execution:
           onStart:
             - export inputNpmBuildStepName="build_npm_app"

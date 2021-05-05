@@ -1,0 +1,4 @@
+myRepo:
+  gitProvider: GitHub
+  path: MaharshiPatel/SwampUp2021
+  branch: pipeline
