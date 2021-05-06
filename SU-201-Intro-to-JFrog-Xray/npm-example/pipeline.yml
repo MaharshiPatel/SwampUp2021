@@ -27,7 +27,7 @@ pipelines:
       - name: npm_build_step
         type: NpmBuild
         configuration:
-          repositoryName: su201-npm-dev-local      # required, npm repository name on artifacctory
+          repositoryName: su201-npm      # required, npm repository name on artifacctory
           sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
           integrations:
             - name:  Artifactory  # required
@@ -38,7 +38,7 @@ pipelines:
         type: NpmPublish
         configuration:
           # for payloadType npm:
-          repositoryName: su201-npm-dev-local       # required, npm repository name on artifactory
+          repositoryName: su201-npm       # required, npm repository name on artifactory
           forceXrayScan: true
           failOnScan: true       # default is TRUE
           autoPublishBuildInfo: true       # optional
