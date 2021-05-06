@@ -18,7 +18,7 @@ resources:
       buildNumber: $run_number
 
 pipelines:
-  - name: npm_example_pipeline1
+  - name: npm_example_pipeline
     configuration:
       environmentVariables:
         readOnly:
@@ -34,6 +34,10 @@ pipelines:
             - name:  Artifactory  # required
           inputResources:
             - name: build_npm_app         # required
+        execution:
+          onStart:
+            - npm -version
+            - npm version patch -git-tag-version false
 
       - name: npm_publish_step
         type: NpmPublish

@@ -2,7 +2,7 @@ template: true   # required for local templates
 valuesFilePath: ./values.yml
 
 resources:
-  - name: build_npm_app
+  - name: MvnExampleGitRepo
     type: GitRepo
     configuration:
       gitProvider: {{ .Values.myRepo.gitProvider }}     # VCS integration name
@@ -15,4 +15,36 @@ resources:
     configuration:
       sourceArtifactory: Artifactory
 
-      
+pipelines:
+  - name: mvn_example_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          my_env_var: '1.0.$run_number'
+          ArtIP: $(echo ${int_ArtifactoryUnified_url}|awk -F '/' '{print $3}'|awk -F ':' '{print $1}')
+
+    steps:
+      - name: mvn_build_step
+        type: MvnBuild
+        configuration:
+          repositoryName: su201-mvn     # required, maven repository name on artifacctory
+          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/mvn-example/      # required, location of pom.xml file
+          mvnCommand: clean install -ntp
+          resolverSnapshotRepo: <string>      # optional
+          resolverReleaseRepo:  <string>      # optional
+          deployerSnapshotRepo: <string>      # optional
+          deployerReleaseRepo:  <string>      # optional
+          forceXrayScan:        <string>      # optional
+          failOnScan:           <boolean>     # default true
+          inputResources:
+            - name: MvnExampleGitRepo
+              trigger: false
+          integrations:
+            - name: Artifactory
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - "11"
