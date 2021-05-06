@@ -69,6 +69,7 @@ pipelines:
         type: MvnBuild
         configuration:
           deployerSnapshotRepo: mvn-virtual
+          deployerReleaseRepo: mvn-virtual
           inputResources:
             - name: git_repo
           integrations:
