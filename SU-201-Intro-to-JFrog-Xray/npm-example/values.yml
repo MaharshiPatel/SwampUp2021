@@ -1,2 +1,3 @@
-gitProvider: GitHub
-path: MaharshiPatel/SwampUp2021
+myRepo:
+  gitProvider: GitHub
+  path: MaharshiPatel/SwampUp2021
