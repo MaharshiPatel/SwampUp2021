@@ -34,10 +34,6 @@ pipelines:
             - name:  Artifactory  # required
           inputResources:
             - name: build_npm_app         # required
-        execution:
-          onStart:
-            - npm -version
-            - npm version patch -git-tag-version false
 
       - name: npm_publish_step
         type: NpmPublish
