@@ -1,19 +1,21 @@
-template: true   # required for local templates
-valuesFilePath: ./values.yml
-
 resources:
   - name: npm_repo_jfp_example
     type: GitRepo
     configuration:
       # SCM integration where the repository is located
-      gitProvider: {{ .Values.myRepo.gitProvider }}
+      gitProvider: GitHub
       # Repository path, including org name/repo name
-      path: {{ .Values.myRepo.path }}
+      path: MaharshiPatel/SwampUp2021
       branches:
         # Specifies which branches will trigger dependent steps
         include: pipeline
 
   - name: npm_buildinfo_jfp_example
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+  
+  - name: mvn_build_info
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
