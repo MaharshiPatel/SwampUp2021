@@ -37,6 +37,7 @@ pipelines:
           # for payloadType npm:
           repositoryName: npm-virtual        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
+          forceXrayScan: true
           integrations:
             - name: Artifactory      # required
           inputSteps:

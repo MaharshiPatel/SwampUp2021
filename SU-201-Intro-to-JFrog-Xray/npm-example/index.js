@@ -39,6 +39,12 @@ app.use((error, req, res, next) => {
     });
   });
 
+const HelloFrogs = {
+    message: "🐸 Welcome to SWAMPUP-2021 🐸"
+}
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
+
+module.exports.HelloFrogs = HelloFrogs;
