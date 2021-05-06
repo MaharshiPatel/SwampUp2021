@@ -30,6 +30,9 @@ pipelines:
             - name:  Artifactory  # required
           inputResources:
             - name: npm_repo_jfp_example         # required
+        execution:
+          onStart:
+            - sh 'sed -i "s/0.1.0/0.$run_number.0/g" ./SU-201-Intro-to-JFrog-Xray/npm-example/package.json'
 
       - name: npm_publish_step
         type: NpmPublish
