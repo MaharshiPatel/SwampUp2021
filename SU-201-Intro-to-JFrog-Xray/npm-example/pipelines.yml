@@ -20,6 +20,10 @@ resources:
 
 pipelines:
   - name: npm_pipeline_jfp_example
+    configuration:
+      environmentVariables:
+        readOnly:
+           my_env_var: '1.0.$run_number'
     steps:
       - name: npm_build_step
         type: NpmBuild
@@ -32,7 +36,7 @@ pipelines:
             - name: npm_repo_jfp_example         # required
         execution:
           onStart:
-            - sed -ie 's/npm-local/npm-example/-/npm-example-1.0.$run_number/g' MaharshiPatel/SwampUp2021/SU-201-Intro-to-JFrog-Xray/npm-example/package.json
+            - sed -ie 's/$my_env_var/g' MaharshiPatel/SwampUp2021/SU-201-Intro-to-JFrog-Xray/npm-example/package.json
 
       - name: npm_publish_step
         type: NpmPublish
