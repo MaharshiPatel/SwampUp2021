@@ -1,50 +1,45 @@
 template: true   # required for local templates
-valuesFilePath: ./values.yaml
+valuesFilePath: ./values.yml
 
 resources:
-  - name: build_npm_app
+  - name: npm_repo_jfp_example
     type: GitRepo
     configuration:
-      gitProvider: {{ .Values.myRepo.gitProvider }}     # VCS integration name
-      path: {{ .Values.myRepo.path }}    # VCS Repository path
+      # SCM integration where the repository is located
+      gitProvider: {{ .Values.myRepo.gitProvider }}
+      # Repository path, including org name/repo name
+      path: {{ .Values.myRepo.path }}
       branches:
-        include: pipeline    # Specifies which branches will trigger dependent steps
+        # Specifies which branches will trigger dependent steps
+        include: pipeline
 
-  - name: NpmBuildInfo
+  - name: npm_buildinfo_jfp_example
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
 
 pipelines:
-  - name: npm_example_pipeline1
-    configuration:
-      environmentVariables:
-        readOnly:
-          my_env_var: '1.0.$run_number'
-
+  - name: npm_pipeline_jfp_example
     steps:
       - name: npm_build_step
         type: NpmBuild
         configuration:
-          repositoryName: su201-tmp-npm      # required, npm repository name on artifacctory
-          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
+          repositoryName: npm-virtual      # required, npm repository name on artifacctory
+          sourceLocation: .      # required, location of package.json file
           integrations:
             - name:  Artifactory  # required
           inputResources:
-            - name: build_npm_app         # required
+            - name: npm_repo_jfp_example         # required
 
       - name: npm_publish_step
         type: NpmPublish
         configuration:
           # for payloadType npm:
-          repositoryName: su201-tmp-npm        # required, npm repository name on artifactory
-          forceXrayScan: true
-          failOnScan: true       # default is TRUE
+          repositoryName: npm-virtual        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
           integrations:
             - name: Artifactory      # required
           inputSteps:
             - name: npm_build_step                # required
           outputResources:
-            - name: NpmBuildInfo                 # optional
-
+            - name: npm_buildinfo_jfp_example                 # optional

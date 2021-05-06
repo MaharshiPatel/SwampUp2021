@@ -1,0 +1,50 @@
+template: true   # required for local templates
+valuesFilePath: ./values.yaml
+
+resources:
+  - name: build_npm_app
+    type: GitRepo
+    configuration:
+      gitProvider: {{ .Values.myRepo.gitProvider }}     # VCS integration name
+      path: {{ .Values.myRepo.path }}    # VCS Repository path
+      branches:
+        include: pipeline    # Specifies which branches will trigger dependent steps
+
+  - name: NpmBuildInfo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+
+pipelines:
+  - name: npm_example_pipeline1
+    configuration:
+      environmentVariables:
+        readOnly:
+          my_env_var: '1.0.$run_number'
+
+    steps:
+      - name: npm_build_step
+        type: NpmBuild
+        configuration:
+          repositoryName: su201-tmp-npm      # required, npm repository name on artifacctory
+          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
+          integrations:
+            - name:  Artifactory  # required
+          inputResources:
+            - name: build_npm_app         # required
+
+      - name: npm_publish_step
+        type: NpmPublish
+        configuration:
+          # for payloadType npm:
+          repositoryName: su201-tmp-npm        # required, npm repository name on artifactory
+          forceXrayScan: true
+          failOnScan: true       # default is TRUE
+          autoPublishBuildInfo: true       # optional
+          integrations:
+            - name: Artifactory      # required
+          inputSteps:
+            - name: npm_build_step                # required
+          outputResources:
+            - name: NpmBuildInfo                 # optional
+
