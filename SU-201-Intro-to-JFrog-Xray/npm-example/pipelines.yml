@@ -8,7 +8,7 @@ resources:
       gitProvider: {{ .Values.myRepo.gitProvider }}     # VCS integration name
       path: {{ .Values.myRepo.path }}    # VCS Repository path
       branches:
-        include: {{ .Values.myRepo.branch }}    # Specifies which branches will trigger dependent steps
+        include: pipeline    # Specifies which branches will trigger dependent steps
 
   - name: NpmBuildInfo
     type: BuildInfo
