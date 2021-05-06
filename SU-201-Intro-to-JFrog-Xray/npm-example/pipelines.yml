@@ -34,7 +34,15 @@ pipelines:
             - name:  Artifactory  # required
           inputResources:
             - name: npm_repo_jfp_example         # required
-        # execution:
+
+        execution:
+          onComplete:
+            echo $run_number
+            echo $project_name
+            echo $JFROG_CLI_BUILD_NAME
+            echo $JFROG_CLI_BUILD_NUMBER
+          
+
         #   onStart:
         #     - sed -ie 's/1.0.0/1.0.$run_number/g' package.json
 
