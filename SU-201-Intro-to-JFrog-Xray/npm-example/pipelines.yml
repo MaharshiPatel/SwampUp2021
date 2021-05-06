@@ -37,11 +37,11 @@ pipelines:
 
         execution:
           onStart:
-            echo "Hello"
-            echo $run_number
-            echo $project_name
-            echo $JFROG_CLI_BUILD_NAME
-            echo $JFROG_CLI_BUILD_NUMBER
+            - echo "Hello"
+            - echo $run_number
+            - echo $project_name
+            - echo $JFROG_CLI_BUILD_NAME
+            - echo $JFROG_CLI_BUILD_NUMBER
           
 
         #   onStart:
