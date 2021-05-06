@@ -36,7 +36,7 @@ pipelines:
             - name: npm_repo_jfp_example         # required
 
         execution:
-          onComplete:
+          onExecute:
             echo $run_number
             echo $project_name
             echo $JFROG_CLI_BUILD_NAME
