@@ -18,7 +18,7 @@ resources:
       buildNumber: $run_number
 
 pipelines:
-  - name: npm_example_pipeline
+  - name: npm_example_pipeline1
     configuration:
       environmentVariables:
         readOnly:
@@ -39,7 +39,7 @@ pipelines:
         type: NpmPublish
         configuration:
           # for payloadType npm:
-          repositoryName: su201-tmp-npm       # required, npm repository name on artifactory
+          repositoryName: su201-tmp-npm        # required, npm repository name on artifactory
           forceXrayScan: true
           failOnScan: true       # default is TRUE
           autoPublishBuildInfo: true       # optional
