@@ -1,0 +1,16 @@
+template: true   # required for local templates
+valuesFilePath: ./values.yaml
+
+resources:
+  - name: build_npm_app
+    type: GitRepo
+    configuration:
+      gitProvider: {{ .Values.myRepo.gitProvider }}     # VCS integration name
+      path: {{ .Values.myRepo.path }}    # VCS Repository path
+      branches:
+        include: {{ .Values.myRepo.branch }}    # Specifies which branches will trigger dependent steps
+
+  - name: MvnBuildInfo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory

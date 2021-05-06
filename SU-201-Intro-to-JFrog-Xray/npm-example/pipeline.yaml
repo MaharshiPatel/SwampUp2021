@@ -1,9 +1,8 @@
 template: true   # required for local templates
-valuesFilePath: ./values.yml
-
+valuesFilePath: ./values.yaml
 
 resources:
-  - name: bld_npm_backend
+  - name: build_npm_app
     type: GitRepo
     configuration:
       gitProvider: {{ .Values.myRepo.gitProvider }}     # VCS integration name
@@ -15,6 +14,8 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
+      buildName: npm-example
+      buildNumber: $run_number
 
 pipelines:
   - name: npm_example_pipeline1
@@ -32,7 +33,7 @@ pipelines:
           integrations:
             - name:  Artifactory  # required
           inputResources:
-            - name: bld_npm_backend         # required
+            - name: build_npm_app         # required
 
       - name: npm_publish_step
         type: NpmPublish
