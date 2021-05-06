@@ -2,9 +2,11 @@
   "name": "npm-example",
   "description": "Node.js sample project",
   "main": "index.js",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "pretest": "npm install",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "dependencies": {
     "express": "^4.17.1",
