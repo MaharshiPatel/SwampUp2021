@@ -1,5 +1,5 @@
 template: true   # required for local templates
-valuesFilePath: ./values.yaml
+valuesFilePath: ./values.yml
 
 resources:
   - name: build_npm_app
@@ -14,3 +14,5 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
+
+      
