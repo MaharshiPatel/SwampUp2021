@@ -14,8 +14,6 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: Artifactory
-      buildName: npm-example
-      buildNumber: $run_number
 
 pipelines:
   - name: npm_example_pipeline1
