@@ -70,6 +70,7 @@ pipelines:
         configuration:
           deployerSnapshotRepo: mvn-virtual
           deployerReleaseRepo: mvn-virtual
+          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/mvn-example/
           inputResources:
             - name: git_repo
           integrations:
