@@ -1,0 +1,4 @@
+gitProvider: GitHub
+artifactory: Artifactory
+repoPath: MaharshiPatel/SwampUp2021
+deployerRepo: su201-mvn-libs-snapshot
