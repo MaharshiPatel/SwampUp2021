@@ -1,5 +1,5 @@
 resources:
-  - name: npm_repo_jfp_example
+  - name: git_repo
     type: GitRepo
     configuration:
       # SCM integration where the repository is located
@@ -35,7 +35,7 @@ pipelines:
           integrations:
             - name:  Artifactory  # required
           inputResources:
-            - name: npm_repo_jfp_example         # required
+            - name: git_repo         # required
 
         execution:
           onStart:
@@ -62,3 +62,23 @@ pipelines:
             - name: npm_build_step                # required
           outputResources:
             - name: npm_buildinfo_jfp_example                 # optional
+  
+  - name: demo_maven
+    steps:
+      - name: mvn_build_step
+        type: MvnBuild
+        configuration:
+          repositoryName: mvn-virtual
+          inputResources:
+            - name: git_repo
+          integrations:
+            - name: Artifactory
+      
+      - name: publish_build
+        type: PublishBuildInfo
+        configuration:
+          forceXrayScan: false
+          inputSteps:
+            - name: mvn_build_step
+          outputResources:
+            - name: mvn_build_info
