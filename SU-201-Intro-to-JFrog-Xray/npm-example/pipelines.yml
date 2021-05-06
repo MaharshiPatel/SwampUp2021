@@ -25,7 +25,7 @@ pipelines:
         type: NpmBuild
         configuration:
           repositoryName: npm-virtual      # required, npm repository name on artifacctory
-          sourceLocation: .      # required, location of package.json file
+          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
           integrations:
             - name:  Artifactory  # required
           inputResources:
