@@ -22,15 +22,17 @@ In `lab1/{java,python}/pipelines.resources.yml`, Update the git resource by usin
       path: cyan21/su301
 ```
 
-Create the following Pipelines integrations : 
+Create the following Pipelines integrations :
 * Github and name it `my_github`
 * Artifactory and name it `artifactory_eu`
 
 Load the pipeline source of your choice :
-* java : `lab1\/java\/pipelines.*\.yml`
-* python : `lab1\/python\/pipelines.*\.yml`
+* java : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab1\/java\/pipelines.*\.yml`
+* python : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab1\/python\/pipelines.*\.yml`
 
 Run the pipeline ... and fix it :P
+
+The pipeline will be triggered on each commit and more !
 
 Extra : 
 * Have a look to the pipeline you didn't choose
@@ -38,17 +40,14 @@ Extra :
 
 # Lab 2
 
-> NOTE : 
-this WILL NOT rely on your previous pipeline and you will start with a clean and working pipeline
-
 In `lab2/{java,python}/pipelines.resources.yml`, Update the git resource by using your own git repo :
 ```
       path: cyan21/su301
 ```
 
 Modify your pipeline source accordingly :
-* java : `lab2\/java\/pipelines.*\.yml`
-* python : `lab2\/python\/pipelines.*\.yml`
+* java : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab2\/java\/pipelines.*\.yml`
+* python : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab2\/python\/pipelines.*\.yml`
 
 Run the pipeline and fix it :P
 
@@ -57,11 +56,9 @@ Run the pipeline and fix it :P
 > Note : We could have merged the 2 pipelines by using a Multi stage docker file. However you would have missed the basics of JFrog pipelines :)
 
 Extra : 
-* Have a look to the pipeline you didn't choose (Filespec)
+* Have a look to the pipeline you didn't choose 
 
 # Lab 3
-
-> this WILL NOT rely on your previous pipeline and you will start with a clean and working pipeline
 
 Choose your deployment pipeline : **K8S** or **VM**
 
@@ -71,29 +68,32 @@ Create Jenkins user in Artifactory
 
 ## K8S
 
+> the K8S integration is already provisioned
+
 In `lab3/cd/k8s/values.yml`, Update the git resource by using your own git repo :
 ```
       path: cyan21/su301
 ```
 
 Create the following Pipelines integrations :
-* K8S (with the provided Kubeconfig) and name it as you wish 
 * IncomingWebhook and name it as you wish 
 
-Modify your pipeline source accordingly : `lab3\/cd\/k8s\/.*\.yml`
+Modify your pipeline source accordingly : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab3\/cd\/k8s\/.*\.yml`
 
-Edit the `lab3/cd/k8s/values.yml`  with your own integration names
+Edit the `lab3/cd/k8s/values.yml`  with your own integration name
 
 Extra : 
 * Run the other pipeline :) 
 
 ## VM
 
+> the SSH key integration is already provisioned
+> For the target VM, keep the one in the example
+
 Create the following Pipelines integrations :
-* SSH key (with the provided key pair) and name it as you wish 
 * IncomingWebhook and name it as you wish 
 
-Modify your pipeline source accordingly : `lab3\/cd\/vm\/pipelines.*\.yml`
+Modify your pipeline source accordingly : `SU-301-Practical-Guide-to-Leveraging-JFrog-Pipelines-for-Jenkins-Users\/lab3\/cd\/vm\/pipelines.*\.yml`
 
 Edit the `lab3/cd/vm/*.yml`  with your own integration names
 
