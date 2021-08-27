@@ -1,0 +1,46 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/SU-201-Intro-to-JFrog-Xray/npm-example-docker'
+        tags: |
+          $(tag)
+
+    - task: ArtifactoryDocker@1
+      inputs:
+        command: 'push'
+        artifactoryService: 'ArtifactorySaaS'
+        targetRepo: 'alpha-docker-dev-local'
+        imageName: 'soleng.jfrog.io/npm-app:$(Build.BuildNumber)'
+        collectBuildInfo: true
+        buildName: '$(Build.DefinitionName)'
+        buildNumber: '$(Build.BuildNumber)'
+        includeEnvVars: true
+    
+    - task: ArtifactoryPublishBuildInfo@1
+      inputs:
+        artifactoryService: 'ArtifactorySaaS'
+        buildName: '$(Build.DefinitionName)'
+        buildNumber: '$(Build.BuildNumber)'
