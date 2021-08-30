@@ -69,7 +69,6 @@ pipelines:
             - name: Artifactory            # required
           inputSteps:
             - name: npm_build_step         # required
-            - name: approvalGatesStep
           outputResources:
             - name: npm_build_info         # optional
   
