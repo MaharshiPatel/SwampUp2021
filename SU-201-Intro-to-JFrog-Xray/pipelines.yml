@@ -43,6 +43,21 @@ pipelines:
           inputResources:
             - name: git_repo   # required
 
+      - name: npm_publish_step
+        type: NpmPublish
+        configuration:
+          # for payloadType npm:
+          repositoryName: swamp-npm-virtual        # required, npm repository name on artifactory
+          autoPublishBuildInfo: true       # optional
+          forceXrayScan: true              # optional 
+          failOnScan: false                 # default true
+          integrations:
+            - name: Artifactory            # required
+          inputSteps:
+            - name: npm_build_step         # required
+          outputResources:
+            - name: npm_build_info         # optional
+
       - name: approvalGatesStep
         type: Bash
         configuration:
@@ -59,21 +74,6 @@ pipelines:
           onComplete:
             - echo "Cleaning up some stuff"
 
-      - name: npm_publish_step
-        type: NpmPublish
-        configuration:
-          # for payloadType npm:
-          repositoryName: swamp-npm-virtual        # required, npm repository name on artifactory
-          autoPublishBuildInfo: true       # optional
-          forceXrayScan: true              # optional 
-          failOnScan: false                 # default true
-          integrations:
-            - name: Artifactory            # required
-          inputSteps:
-            - name: npm_build_step         # required
-          outputResources:
-            - name: npm_build_info         # optional
-  
   - name: mvn_example_pipeline
     steps:
       - name: mvn_build_step
