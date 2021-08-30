@@ -62,8 +62,6 @@ pipelines:
         type: Bash
         configuration:
           requiresApproval: true
-          outputResources:
-            - name: npm_publish_step
         execution:
           onExecute:
             - echo "executing step..."
