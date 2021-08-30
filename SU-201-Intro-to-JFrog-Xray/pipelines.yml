@@ -43,6 +43,20 @@ pipelines:
           inputResources:
             - name: git_repo   # required
 
+      - name: approvalGatesStep
+        type: Bash
+        configuration:
+          requiresApproval: true
+        execution:
+          onExecute:
+            - echo "executing step..."
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete:
+            - echo "Cleaning up some stuff"
+
       - name: npm_publish_step
         type: NpmPublish
         configuration:
@@ -58,19 +72,11 @@ pipelines:
           outputResources:
             - name: npm_build_info         # optional
 
-      - name: approvalGatesStep
+      - name: final_step
         type: Bash
         configuration:
-          requiresApproval: true
-        execution:
-          onExecute:
-            - echo "executing step..."
-          onSuccess:
-            - echo "Job well done!"
-          onFailure:
-            - echo "uh oh, something went wrong"
-          onComplete:
-            - echo "Cleaning up some stuff"
+          inputSteps:
+            - name: approvalGatesStep
   
   - name: mvn_example_pipeline
     steps:
