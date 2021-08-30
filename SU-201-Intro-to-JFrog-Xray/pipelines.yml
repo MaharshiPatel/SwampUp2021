@@ -46,13 +46,7 @@ pipelines:
       - name: approvalGatesStep
         type: Bash
         configuration:
-          requiresApproval:
-            timeoutSeconds: 43200
-            approvers:
-              - maharship
-              - user1
-            notifications:
-              - integrationName: slack #required Slack integration
+          requiresApproval: true
         execution:
           onExecute:
             - echo "executing step..."
