@@ -43,6 +43,20 @@ pipelines:
           inputResources:
             - name: git_repo   # required
 
+      - name: approvalGatesStep
+        type: Bash
+        configuration:
+          requiresApproval:
+            timeoutSeconds: 43200
+            approvers:
+              - maharship
+              - user1
+            notifications:
+              - integrationName: slack #required Slack integration
+        execution:
+          onExecute:
+            - echo "executing step..."
+
       - name: npm_publish_step
         type: NpmPublish
         configuration:
@@ -55,6 +69,7 @@ pipelines:
             - name: Artifactory            # required
           inputSteps:
             - name: npm_build_step         # required
+            - name: approvalGatesStep
           outputResources:
             - name: npm_build_info         # optional
   
@@ -71,20 +86,6 @@ pipelines:
             - name: git_repo
           integrations:
             - name: Artifactory
-
-      - name: approvalGatesStep
-        type: Bash
-        configuration:
-          requiresApproval:
-            timeoutSeconds: 43200
-            approvers:
-              - maharship
-              - user1
-            notifications:
-              - integrationName: slack #required Slack integration
-        execution:
-          onExecute:
-            - echo "executing step..."
       
       - name: publish_build
         type: PublishBuildInfo
