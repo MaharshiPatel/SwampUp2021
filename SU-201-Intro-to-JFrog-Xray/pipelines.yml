@@ -71,6 +71,16 @@ pipelines:
             - name: git_repo
           integrations:
             - name: Artifactory_Mpatel
+
+      - name: approvalGatesStep
+        type: Bash
+        configuration:
+          requiresApproval:
+            timeoutSeconds: 43200
+            approvers:
+              - maharship@jfrog.com
+            notifications:
+              - integrationName: slack #required Slack integration
       
       - name: publish_build
         type: PublishBuildInfo
