@@ -78,9 +78,13 @@ pipelines:
           requiresApproval:
             timeoutSeconds: 43200
             approvers:
-              - maharship@jfrog.com
+              - maharship
+              - user1
             notifications:
               - integrationName: slack #required Slack integration
+        execution:
+          onExecute:
+            - echo "executing step..."
       
       - name: publish_build
         type: PublishBuildInfo
