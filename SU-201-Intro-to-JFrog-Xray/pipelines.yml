@@ -13,18 +13,18 @@ resources:
   - name: npm_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: Artifactory_Mpatel
+      sourceArtifactory: Artifactory
       buildName:  'npm_example_pipeline'
       buildNumber: $run_number
-      externalCI: Artifactory_Mpatel
+      externalCI: Artifactory
   
   - name: mvn_build_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: Artifactory_Mpatel
+      sourceArtifactory: Artifactory
       buildName:  'mvn_example_pipeline'
       buildNumber: $run_number
-      externalCI: Artifactory_Mpatel
+      externalCI: Artifactory
 
 pipelines:
   - name: npm_example_pipeline
@@ -39,7 +39,7 @@ pipelines:
           repositoryName: swamp-npm-virtual                                      # required, npm repository name on artifacctory
           sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
           integrations:
-            - name:  Artifactory_Mpatel  # required 
+            - name:  Artifactory  # required 
           inputResources:
             - name: git_repo   # required
 
@@ -52,7 +52,7 @@ pipelines:
           forceXrayScan: true              # optional 
           failOnScan: false                 # default true
           integrations:
-            - name: Artifactory_Mpatel            # required
+            - name: Artifactory            # required
           inputSteps:
             - name: npm_build_step         # required
           outputResources:
@@ -70,7 +70,7 @@ pipelines:
           inputResources:
             - name: git_repo
           integrations:
-            - name: Artifactory_Mpatel
+            - name: Artifactory
 
       - name: approvalGatesStep
         type: Bash
