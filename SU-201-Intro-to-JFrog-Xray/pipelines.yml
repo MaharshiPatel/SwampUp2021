@@ -47,6 +47,8 @@ pipelines:
         type: Bash
         configuration:
           requiresApproval: true
+          outputResources:
+            - name: npm_publish_step
         execution:
           onExecute:
             - echo "executing step..."
@@ -71,16 +73,6 @@ pipelines:
             - name: npm_build_step         # required
           outputResources:
             - name: npm_build_info         # optional
-
-      - name: final_step
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: approvalGatesStep
-        execution:
-          onExecute:
-            # Demonstrates the availability of an env variable written to run state during p1_s1
-            - echo $current_runid
   
   - name: mvn_example_pipeline
     steps:
