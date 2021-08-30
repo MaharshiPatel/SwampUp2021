@@ -50,6 +50,12 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete:
+            - echo "Cleaning up some stuff"
 
       - name: npm_publish_step
         type: NpmPublish
