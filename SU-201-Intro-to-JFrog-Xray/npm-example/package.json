@@ -7,12 +7,13 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "axios": "0.20.0",
+    "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "debug": "^4.1.1",
-    "express": "^4.12.1",
+    "express": "4.13.3",
     "http-errors": "^1.7.2",
-    "lodash": "4.17.11",
+    "is-svg": "^2.1.0",
+    "lodash": "4.17.12",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
     "pg": "^8.5.0",
@@ -20,5 +21,8 @@
     "send": "^0.16.2",
     "socket.io": "2.1.0",
     "url-parse": "1.4.7"
+  },
+  "devDependencies": {
+    "@babel/core": "7.10.0"
   }
 }
