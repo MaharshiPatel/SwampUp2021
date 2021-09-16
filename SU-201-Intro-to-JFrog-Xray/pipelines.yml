@@ -50,7 +50,10 @@ pipelines:
       - name: npm_publish_step
         type: NpmPublish
         configuration:
-          # for payloadType npm:
+          requiresApproval:
+            timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
+            approvers:
+              - maharship
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
           forceXrayScan: true              # optional 
@@ -61,6 +64,24 @@ pipelines:
             - name: npm_build_step         # required
           outputResources:
             - name: npm_build_info         # optional
+
+      - name: npm_publish_step
+        type: PromoteBuild
+        configuration:
+          requiresApproval:
+              timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
+              approvers:
+                - qateam
+          targetRepository: su201-npm-qa-local
+          includeDependencies: false    # default false
+          status: 'QA' 
+          comment: 'Promote to QA'
+          copy: true
+          inputResources:
+            - name: npm_build_info
+              trigger: false
+          outputResources:
+            - name: npm_build_info
 
   - name: mvn_example_pipeline
     steps:
