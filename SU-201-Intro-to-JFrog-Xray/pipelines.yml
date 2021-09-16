@@ -78,7 +78,7 @@ pipelines:
           comment: 'Promote to QA'
           copy: true
           inputResources:
-            - name: npm_build_info
+            - name: npm_publish_step
               trigger: false
           outputResources:
             - name: npm_build_info
