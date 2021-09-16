@@ -65,7 +65,7 @@ pipelines:
           outputResources:
             - name: npm_build_info         # optional
 
-      - name: npm_publish_step
+      - name: promote_to_qa
         type: PromoteBuild
         configuration:
           requiresApproval:
