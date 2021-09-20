@@ -50,12 +50,9 @@ pipelines:
             - name:  Artifactory  # required 
           inputResources:
             - name: git_repo   # required
-
-      - name: npm_test
-        type: Bash
         execution:
-          onExecute:
-            - npm run test
+          onComplete:
+            - save_tests $res_npm_app_resourcePath/testreport.xml
 
       - name: npm_publish_step
         type: NpmPublish
