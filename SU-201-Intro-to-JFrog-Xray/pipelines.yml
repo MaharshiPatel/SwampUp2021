@@ -58,6 +58,8 @@ pipelines:
             timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
             approvers:
               - maharship
+            notifications:
+              - integrationName: slack
           repositoryName: su201-npm        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
           forceXrayScan: true              # optional 
