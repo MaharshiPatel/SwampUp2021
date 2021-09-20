@@ -51,6 +51,12 @@ pipelines:
           inputResources:
             - name: git_repo   # required
 
+      - name: npm_test
+        type: Bash
+        execution:
+          onExecute:
+            - npm run test
+
       - name: npm_publish_step
         type: NpmPublish
         configuration:
