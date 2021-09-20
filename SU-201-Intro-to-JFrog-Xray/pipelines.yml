@@ -17,6 +17,14 @@ resources:
       buildName:  'npm_example_pipeline'
       buildNumber: $run_number
       externalCI: Artifactory
+
+  - name: npm_promoted_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+      buildName:  'npm_example_pipeline'
+      buildNumber: $run_number
+      externalCI: Artifactory
   
   - name: mvn_build_info
     type: BuildInfo
@@ -77,8 +85,10 @@ pipelines:
           status: 'QA' 
           comment: 'Promote to QA'
           copy: true
-          outputResources:
+          inputResources:
             - name: npm_build_info
+          outputResources:
+            - name: npm_promoted_build_info
 
   - name: mvn_example_pipeline
     steps:
