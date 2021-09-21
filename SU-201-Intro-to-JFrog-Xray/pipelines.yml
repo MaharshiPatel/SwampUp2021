@@ -25,6 +25,14 @@ resources:
       buildName:  'npm_example_pipeline'
       buildNumber: $run_number
       externalCI: Artifactory
+
+  - name: npm_qa_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: Artifactory
+      buildName:  'npm_example_pipeline'
+      buildNumber: $run_number
+      externalCI: Artifactory
   
   - name: mvn_build_info
     type: BuildInfo
