@@ -50,22 +50,9 @@ pipelines:
             - name:  Artifactory  # required 
           inputResources:
             - name: git_repo   # required
-      
-      - name: npm_test_step
-        type: Bash
-        configuration:
-          inputResources:
-            - name: git_repo   # required
-          inputSteps:
-            - name: npm_build_step         # required
         execution:
-          onExecute:
+          onSuccess:
             - cd $res_src_resourcePath
-            - mkdir -p testresults && mkdir -p codecoverage
-            - pwd
-            - ls
-            - save_tests $res_src_resourcePath/testresults/testresults.xml
-        
 
       - name: npm_publish_step
         type: NpmPublish
@@ -86,6 +73,21 @@ pipelines:
             - name: npm_build_step         # required
           outputResources:
             - name: npm_build_info         # optional
+
+      - name: npm_test_step
+        type: Bash
+        configuration:
+          inputResources:
+            - name: git_repo   # required
+        execution:
+          onExecute:
+            - cd $res_src_resourcePath
+            - mkdir -p testresults && mkdir -p codecoverage
+            - pwd
+            - ls
+            - save_tests $res_src_resourcePath/testresults/testresults.xml
+          onSuccess:
+            - send_notification slack "Build is ready for QA Team"
 
       - name: promote_to_qa
         type: PromoteBuild
