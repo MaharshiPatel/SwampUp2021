@@ -56,13 +56,6 @@ pipelines:
         configuration:
           inputResources:
             - name: git_repo   # required
-          runtime:
-            type: image
-            image:
-              auto:
-                language: nodejs
-                versions:
-                  - "10.16.3"
         execution:
           onExecute:
             - cd $res_src_resourcePath
