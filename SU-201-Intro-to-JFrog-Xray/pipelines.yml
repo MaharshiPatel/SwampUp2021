@@ -78,7 +78,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: git_repo   # required
+            - name: npm_build_info   # required
         execution:
           onExecute:
             - cd $res_src_resourcePath
