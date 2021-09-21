@@ -25,14 +25,6 @@ resources:
       buildName:  'npm_example_pipeline'
       buildNumber: $run_number
       externalCI: Artifactory
-
-  - name: npm_qa_build_info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: Artifactory
-      buildName:  'npm_example_pipeline'
-      buildNumber: $run_number
-      externalCI: Artifactory
   
   - name: mvn_build_info
     type: BuildInfo
@@ -81,23 +73,6 @@ pipelines:
             - name: npm_build_step         # required
           outputResources:
             - name: npm_build_info         # optional
-
-      - name: npm_test_step
-        type: Bash
-        configuration:
-          inputResources:
-            - name: npm_build_info   # required
-          outputResources:
-            - name: npm_qa_build_info
-        execution:
-          onExecute:
-            - cd $res_src_resourcePath
-            - mkdir -p testresults && mkdir -p codecoverage
-            - pwd
-            - ls
-            - save_tests $res_src_resourcePath/testresults/testresults.xml
-          onSuccess:
-            - send_notification slack "Build is ready for QA Team"
 
       - name: promote_to_qa
         type: PromoteBuild
