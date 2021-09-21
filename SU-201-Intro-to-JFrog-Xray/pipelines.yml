@@ -56,6 +56,8 @@ pipelines:
         configuration:
           inputResources:
             - name: git_repo   # required
+          inputSteps:
+            - name: npm_build_step         # required
         execution:
           onExecute:
             - cd $res_src_resourcePath
@@ -63,8 +65,7 @@ pipelines:
             - pwd
             - ls
             - save_tests $res_src_resourcePath/testresults/testresults.xml
-          onSuccess:
-            - send_notification mySlack "build completed"
+        
 
       - name: npm_publish_step
         type: NpmPublish
