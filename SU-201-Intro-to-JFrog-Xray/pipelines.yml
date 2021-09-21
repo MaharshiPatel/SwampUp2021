@@ -50,9 +50,22 @@ pipelines:
             - name:  Artifactory  # required 
           inputResources:
             - name: git_repo   # required
+      
+      - name: npm_test_step
+        type: Bash
+        configuration:
+          inputResources:
+            - name: git_repo   # required
         execution:
-          onComplete:
-            - save_tests $res_npm_app_resourcePath/testreport.xml
+          onExecute:
+            - cd $res_src_resourcePath
+            - mkdir -p testresults && mkdir -p codecoverage
+            - $res_src_resourcePath/node_modules/.bin/mocha --recursive "tests/**/*.spec.js" -R mocha-junit-reporter --reporter-options mochaFile=testresults/testresults.xml
+            - $res_src_resourcePath/node_modules/.bin/istanbul --include-all-sources cover -root "routes" node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive "tests/**/*.spec.js"
+            - $res_src_resourcePath/node_modules/.bin/istanbul report cobertura --dir codecoverage
+            - save_tests $res_src_resourcePath/testresults/testresults.xml
+          onSuccess:
+            - send_notification mySlack "build completed"
 
       - name: npm_publish_step
         type: NpmPublish
