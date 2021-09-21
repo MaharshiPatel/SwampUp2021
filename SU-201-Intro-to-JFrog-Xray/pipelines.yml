@@ -79,6 +79,8 @@ pipelines:
         configuration:
           inputResources:
             - name: npm_build_info   # required
+          outputResources:
+            - name: npm_qa_build_info
         execution:
           onExecute:
             - cd $res_src_resourcePath
