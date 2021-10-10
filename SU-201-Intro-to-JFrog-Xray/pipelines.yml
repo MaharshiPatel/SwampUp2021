@@ -60,16 +60,6 @@ pipelines:
         configuration:
           inputSteps:
             - name: npm_build_step
-        stepletMultipliers:
-          environmentVariables:
-            - module: mod_1
-          runtimes:
-            - type: image
-              image:
-                auto:
-                  language: node
-                  versions:
-                    - 12
         execution:
           onExecute:
             - pushd ./setup/app
