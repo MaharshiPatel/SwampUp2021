@@ -23,6 +23,7 @@
     "url-parse": "1.4.7"
   },
   "devDependencies": {
-    "@babel/core": "7.10.0"
+    "@babel/core": "7.10.0",
+    "log4js": "2.5.1"
   }
 }
