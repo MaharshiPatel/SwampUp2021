@@ -59,7 +59,7 @@ pipelines:
         stepMode: Bash
         configuration:
           inputSteps:
-            - name: NpmBuild
+            - name: npm_build_step
         stepletMultipliers:
           environmentVariables:
             - module: mod_1
