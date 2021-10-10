@@ -82,7 +82,7 @@ pipelines:
           integrations:
             - name: Artifactory_MPATEL            # required
           inputSteps:
-            - name: test         # required
+            - name: npm_build_step         # required
           outputResources:
             - name: npm_build_info         # optional
 
