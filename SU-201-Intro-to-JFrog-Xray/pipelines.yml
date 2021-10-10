@@ -62,9 +62,7 @@ pipelines:
             - name: npm_build_step
         execution:
           onExecute:
-            - pushd ./setup/app
             - MODULE="$module" npm run test
-            - popd
           onComplete:
             - save_tests $res_git_repo_resourcePath/sample_test.xml
 
