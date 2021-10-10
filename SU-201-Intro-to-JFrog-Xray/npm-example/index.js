@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 const _ = require("lodash")
 const mathjs =require("mathjs")
 
@@ -27,6 +26,7 @@ console.log(mathjs.random(1,1000000000000));
 
 app.use((req, res, next) => {
     const error = new Error("Not found");
+    console.log(error)
     error.status = 404;
     error.message = "🐸 Ribbit Ribbit Ribbit Ribbit 🐸"
     next(error);
