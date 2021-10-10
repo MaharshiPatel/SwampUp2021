@@ -4,7 +4,8 @@
   "description": "Node.js sample project",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "mocha"
   },
   "dependencies": {
     "axios": "0.21.1",
@@ -13,15 +14,15 @@
     "http-errors": "^1.7.2",
     "is-svg": "^2.1.0",
     "lodash": "4.17.12",
+    "log4js": "2.5.1",
+    "mocha": "^9.1.2",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
     "pg": "^8.5.0",
     "redis": "3.1.0",
     "send": "^0.16.2",
-    "simple-nodejs-weather-app": "1.0.3",
     "socket.io": "2.1.0",
-    "url-parse": "1.4.7",
-    "log4js": "2.5.1"
+    "url-parse": "1.4.7"
   },
   "devDependencies": {
     "@babel/core": "7.10.0"

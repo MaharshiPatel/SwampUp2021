@@ -53,6 +53,9 @@ pipelines:
         execution:
           onSuccess:
             - cd $res_src_resourcePath
+          onComplete:
+            - echo $res_src_resourcePath
+            - save_tests $res_src_resourcePath/tests/
 
       - name: npm_publish_step
         type: NpmPublish
