@@ -78,7 +78,7 @@ pipelines:
           requiresApproval:
               timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
               approvers:
-                - qateam
+                - qalead
           targetRepository: alpha-npm-qa-local
           includeDependencies: false    # default false
           status: 'QA' 
