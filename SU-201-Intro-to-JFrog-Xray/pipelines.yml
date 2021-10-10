@@ -51,11 +51,12 @@ pipelines:
           inputResources:
             - name: git_repo   # required
         execution:
-          onStart:
-            - sed -ie "s/1.0.0/1.0.$run_number/g" $res_git_repo_resourcePath/package.json 
-            - save_tests $res_git_repo_resourcePath/sample_test.xml
-          onSuccess:
+          onExecute:
+            - pushd ./setup/app
+            - MODULE="$module" npm run test
+          onComplete:
             - cd $res_src_resourcePath
+            - save_tests $res_git_repo_resourcePath/sample_test.xml
 
       - name: npm_publish_step
         type: NpmPublish
