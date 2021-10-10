@@ -3,12 +3,12 @@ resources:
     type: GitRepo
     configuration:
       # SCM integration where the repository is located
-      gitProvider: GitHub
+      gitProvider: Artifactory_Mpatel
       # Repository path, including org name/repo name
       path: MaharshiPatel/SwampUp2021                     # Update with your "git_user"/SwampUp2021
       branches:
         # Specifies which branches will trigger dependent steps
-        include: main
+        include: feature/selfmanaged
 
   - name: npm_build_info
     type: BuildInfo
@@ -33,14 +33,6 @@ resources:
       buildName:  'npm_example_pipeline'
       buildNumber: $run_number
       externalCI: Artifactory
-  
-  - name: mvn_build_info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: Artifactory
-      buildName:  'mvn_example_pipeline'
-      buildNumber: $run_number
-      externalCI: Artifactory
 
 pipelines:
   - name: npm_example_pipeline
@@ -52,7 +44,7 @@ pipelines:
       - name: npm_build_step
         type: NpmBuild
         configuration:
-          repositoryName: su201-npm                                      # required, npm repository name on artifacctory
+          repositoryName: alpha-npm-virtual                                      # required, npm repository name on artifacctory
           sourceLocation: ./SU-201-Intro-to-JFrog-Xray/npm-example/      # required, location of package.json file
           integrations:
             - name:  Artifactory  # required 
@@ -71,7 +63,7 @@ pipelines:
               - maharship
             notifications:
               - integrationName: slack
-          repositoryName: su201-npm        # required, npm repository name on artifactory
+          repositoryName: alpha-npm-virtual        # required, npm repository name on artifactory
           autoPublishBuildInfo: true       # optional
           forceXrayScan: true              # optional 
           failOnScan: false                 # default true
@@ -89,7 +81,7 @@ pipelines:
               timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
               approvers:
                 - qateam
-          targetRepository: su201-npm-qa-local
+          targetRepository: alpha-npm-qa-local
           includeDependencies: false    # default false
           status: 'QA' 
           comment: 'Promote to QA'
@@ -106,7 +98,7 @@ pipelines:
               timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
               approvers:
                 - secops
-          targetRepository: su201-npm-stage-local
+          targetRepository: alpha-npm-stage-local
           includeDependencies: false    # default false
           status: 'QA' 
           comment: 'Promote to QA'
@@ -115,27 +107,3 @@ pipelines:
             - name: npm_promoted_build_info
           outputResources:
             - name: npm_promoted_to_stage_build_info
-
-  - name: mvn_example_pipeline
-    steps:
-      - name: mvn_build_step
-        type: MvnBuild
-        configuration:
-          deployerSnapshotRepo: su201-libs-snapshot
-          deployerReleaseRepo:  su201-libs-release
-          sourceLocation: ./SU-201-Intro-to-JFrog-Xray/maven-example/
-          mvnCommand: clean install -ntp
-          inputResources:
-            - name: git_repo
-          integrations:
-            - name: Artifactory
-      
-      - name: publish_build
-        type: PublishBuildInfo
-        configuration:
-          forceXrayScan: true              # optional  
-          failOnScan: false                 # default true
-          inputSteps:
-            - name: mvn_build_step
-          outputResources:
-            - name: mvn_build_info
