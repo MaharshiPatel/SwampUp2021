@@ -9,7 +9,6 @@
   "dependencies": {
     "axios": "^0.20.0",
     "body-parser": "^1.19.0",
-    "debug": "^4.1.1",
     "express": "4.13.3",
     "http-errors": "^1.7.2",
     "is-svg": "^2.1.0",
