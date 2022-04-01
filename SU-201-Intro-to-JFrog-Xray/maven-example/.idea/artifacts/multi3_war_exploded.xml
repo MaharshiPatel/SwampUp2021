@@ -1,0 +1,147 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="multi3:war exploded">
+    <output-path>$PROJECT_DIR$/multi3/target/multi3-3.7-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>multi3</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="multi3" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="multi1-3.7-SNAPSHOT.jar">
+            <element id="module-output" name="multi1" />
+          </element>
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-email:1.5" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.6" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-utils:3.4.1" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:20030203.000550" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.13" />
+          <element id="library" level="project" name="Maven: hsqldb:hsqldb:1.8.0.10" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.10" />
+          <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.2" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-http:4.1.34.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-common:4.1.45.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.1.45.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-transport:4.1.45.Final" />
+          <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.2.3" />
+          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.2.3" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.14" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.14" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.19.4" />
+          <element id="library" level="project" name="Maven: javax.ws.rs:jsr311-api:1.1.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.17.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.17.1" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.2" />
+          <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.0.4" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:2.4.4" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:2.4.4" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.4.4" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.4.4" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-to-slf4j:2.13.3" />
+          <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.30" />
+          <element id="library" level="project" name="Maven: jakarta.annotation:jakarta.annotation-api:1.3.5" />
+          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.27" />
+          <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-function-web:3.1.6" />
+          <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-function-context:3.1.6" />
+          <element id="library" level="project" name="Maven: net.jodah:typetools:0.6.2" />
+          <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-function-core:3.1.6" />
+          <element id="library" level="project" name="Maven: io.projectreactor:reactor-core:3.4.12" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-messaging:5.3.13" />
+          <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.3.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.1" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.14" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.14" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.9" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:31.0.1-jre" />
+          <element id="library" level="project" name="Maven: com.google.guava:failureaccess:1.0.1" />
+          <element id="library" level="project" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
+          <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.12.0" />
+          <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.7.1" />
+          <element id="library" level="project" name="Maven: com.google.j2objc:j2objc-annotations:1.3" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-vault:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-core:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2" />
+          <element id="library" level="project" name="Maven: jakarta.el:jakarta.el-api:3.0.3" />
+          <element id="library" level="project" name="Maven: jakarta.interceptor:jakarta.interceptor-api:1.2.5" />
+          <element id="library" level="project" name="Maven: jakarta.ejb:jakarta.ejb-api:3.2.6" />
+          <element id="library" level="project" name="Maven: jakarta.inject:jakarta.inject-api:1.0" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-ide-launcher:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-development-mode-spi:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.smallrye.config:smallrye-config:2.4.4" />
+          <element id="library" level="project" name="Maven: io.smallrye.config:smallrye-config-core:2.4.4" />
+          <element id="library" level="project" name="Maven: org.eclipse.microprofile.config:microprofile-config-api:2.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.common:smallrye-common-expression:1.6.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.common:smallrye-common-function:1.6.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.common:smallrye-common-constraint:1.6.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.common:smallrye-common-classloader:1.6.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.config:smallrye-config-common:2.4.4" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.2.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.logmanager:jboss-logmanager-embedded:1.0.9" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging-annotations:2.2.1.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.threads:jboss-threads:3.4.2.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.slf4j:slf4j-jboss-logmanager:1.1.0.Final" />
+          <element id="library" level="project" name="Maven: org.graalvm.sdk:graal-sdk:21.2.0" />
+          <element id="library" level="project" name="Maven: org.wildfly.common:wildfly-common:1.5.4.Final-format-001" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-bootstrap-runner:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.smallrye.common:smallrye-common-io:1.6.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:smallrye-mutiny-vertx-web-client:2.13.0" />
+          <element id="library" level="project" name="Maven: io.vertx:vertx-web-client:4.1.3" />
+          <element id="library" level="project" name="Maven: io.vertx:vertx-web-common:4.1.3" />
+          <element id="library" level="project" name="Maven: io.vertx:vertx-auth-common:4.1.3" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:smallrye-mutiny-vertx-core:2.13.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:smallrye-mutiny-vertx-runtime:2.13.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:vertx-mutiny-generator:2.13.0" />
+          <element id="library" level="project" name="Maven: io.vertx:vertx-codegen:4.1.3" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:smallrye-mutiny-vertx-auth-common:2.13.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:smallrye-mutiny-vertx-web-common:2.13.0" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-mutiny:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:mutiny:1.0.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.common:smallrye-common-annotation:1.6.0" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-smallrye-context-propagation:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.smallrye:smallrye-context-propagation:1.2.0" />
+          <element id="library" level="project" name="Maven: io.smallrye:smallrye-context-propagation-api:1.2.0" />
+          <element id="library" level="project" name="Maven: io.smallrye:smallrye-context-propagation-storage:1.2.0" />
+          <element id="library" level="project" name="Maven: io.smallrye.reactive:mutiny-smallrye-context-propagation:1.0.0" />
+          <element id="library" level="project" name="Maven: org.eclipse.microprofile.context-propagation:microprofile-context-propagation-api:1.2" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-vertx-core:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-arc:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-netty:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-http2:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-handler:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-haproxy:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.vertx:vertx-core:4.1.3" />
+          <element id="library" level="project" name="Maven: io.netty:netty-handler-proxy:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-socks:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-resolver:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-resolver-dns:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-dns:4.1.67.Final" />
+          <element id="library" level="project" name="Maven: io.quarkus.arc:arc:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: jakarta.transaction:jakarta.transaction-api:1.3.3" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-vault-model:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-jackson:2.2.3.Final" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.12.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.4" />
+          <element id="library" level="project" name="Maven: io.quarkus:quarkus-credentials:2.2.3.Final" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/multi3/target/multi3-3.7-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="multi3/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,10 @@
+version: 1
+type: maven
+resolver:
+  serverId: swamp201SaaS
+  snapshotRepo: su201-libs-snapshot
+  releaseRepo: su201-libs-snapshot
+deployer:
+  serverId: swamp201SaaS
+  snapshotRepo: su201-libs-snapshot
+  releaseRepo: su201-libs-snapshot
