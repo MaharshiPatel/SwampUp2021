@@ -68,7 +68,7 @@ pipelines:
           requiresApproval:
             timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
             approvers:
-              - maharship
+              - admin
             notifications:
               - integrationName: slack
           repositoryName: su201-npm        # required, npm repository name on artifactory
@@ -88,7 +88,7 @@ pipelines:
           requiresApproval:
               timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
               approvers:
-                - qateam
+                - admin
           targetRepository: su201-npm-qa-local
           includeDependencies: false    # default false
           status: 'QA' 
@@ -105,7 +105,7 @@ pipelines:
           requiresApproval:
               timeoutSeconds: 43200 # if not approved in this timeframe, the step will be cancelled
               approvers:
-                - secops
+                - admin
           targetRepository: su201-npm-stage-local
           includeDependencies: false    # default false
           status: 'QA' 
